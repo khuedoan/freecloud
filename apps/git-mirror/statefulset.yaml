@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: git-mirror
+  name: git-mirror
+  namespace: git-mirror
+spec:
+  selector:
+    matchLabels:
+      app: git-mirror
+  serviceName: git-mirror
+  template:
+    metadata:
+      labels:
+        app: git-mirror
+    spec:
+      containers:
+        - name: soft-serve
+          image: charmcli/soft-serve:latest
+          volumeMounts:
+            - mountPath: /soft-serve
+              name: data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: git-mirror-data

@@ -46,6 +46,22 @@ resource "oci_core_security_list" "base" {
   }
 
   ingress_security_rules {
+    description = "Git Mirror SSH"
+    protocol    = local.protocols["tcp"]
+    source      = "0.0.0.0/0"
+
+    tcp_options {
+      source_port_range {
+        min = 1
+        max = 65535
+      }
+
+      min = 23231
+      max = 23231
+    }
+  }
+
+  ingress_security_rules {
     description = "Kubernetes API"
     protocol    = local.protocols["tcp"]
     source      = "${chomp(data.http.public_ipv4.body)}/32"

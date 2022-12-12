@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: git-mirror
+  namespace: git-mirror
+  labels:
+    app: git-mirror
+spec:
+  type: LoadBalancer
+  selector:
+    app: git-mirror
+  ports:
+    - name: ssh
+      protocol: TCP
+      port: 23231
+      targetPort: 23231
