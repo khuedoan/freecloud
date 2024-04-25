@@ -5,7 +5,7 @@ app-template:
         app:
           image:
             repository: docker.io/library/nginx
-            tag: placeholder
+            tag: '1.26.0'
   service:
     example:
       controller: example
