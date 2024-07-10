@@ -29,10 +29,6 @@
             timoni
             wireguard-tools
             yamllint
-
-            (python3.withPackages (p: with p; [
-              kubernetes
-            ]))
           ];
         };
       }

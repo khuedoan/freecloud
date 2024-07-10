@@ -74,7 +74,7 @@ Install the following packages:
 That's it! Run the following command to open the Nix shell:
 
 ```sh
-nix-shell
+nix develop
 ```
 
 ### Provision
