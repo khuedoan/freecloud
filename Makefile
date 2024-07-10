@@ -3,6 +3,8 @@
 
 env ?= dev
 
+export KUBECONFIG = $(shell pwd)/cluster/kubeconfig-${env}.yaml
+
 default: infra cluster system platform apps
 
 infra:
@@ -12,10 +14,12 @@ cluster:
 	make -C cluster env=${env}
 
 system:
-	make -C system env=${env}
+	sops exec-env ./secrets/common.enc.yaml 'timoni bundle apply --runtime-from-env --file system/addons.cue'
 
 platform:
-	make -C platform env=${env}
+	sops exec-env ./secrets/common.enc.yaml 'timoni bundle apply --runtime-from-env --file platform/vpn.cue'
+	sops exec-env ./secrets/common.enc.yaml 'timoni bundle apply --runtime-from-env --file platform/sso.cue'
+	sops exec-env ./secrets/common.enc.yaml 'timoni bundle apply --runtime-from-env --file platform/cicd.cue'
 
 apps:
-	make -C apps env=${env}
+	sops exec-env ./secrets/common.enc.yaml 'timoni bundle apply --runtime-from-env --file apps/blog.cue'
