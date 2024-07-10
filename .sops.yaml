@@ -3,4 +3,4 @@ creation_rules:
   # - run age-keygen
   # - copy public key here
   # - copy private key to ~/.config/sops/age/keys.txt
-  - age: age18tr027quyh3yqnnzyjk00hjw7jc3drgt6ze38ucrwzuwem7gq5sqkxcsve
+  - age: age1xsu2p4039ckvwfgpgr7uljz2qdhqqy7rgae3v02d3k9aqc549a6sxer9d5
