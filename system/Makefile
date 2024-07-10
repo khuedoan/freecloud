@@ -9,9 +9,5 @@ default: apply
 
 # TODO DRY
 apply:
-	timoni bundle apply --file gitops.cue
-	timoni bundle apply --file addons.cue
-
-diff:
-	timoni bundle apply --file gitops.cue --dry-run --diff
-	timoni bundle apply --file addons.cue --dry-run --diff
+	sops exec-env ../secrets.enc.yaml 'timoni bundle apply --runtime-from-env --file gitops.cue'
+	sops exec-env ../secrets.enc.yaml 'timoni bundle apply --runtime-from-env --file addons.cue'

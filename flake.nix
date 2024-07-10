@@ -12,6 +12,7 @@
       {
         devShells.default = mkShell {
           packages = [
+            age
             ansible
             ansible-lint
             git
@@ -24,6 +25,7 @@
             opentofu
             pre-commit
             shellcheck
+            sops
             timoni
             yamllint
 

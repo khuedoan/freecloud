@@ -18,6 +18,9 @@ bundle: {
                             repository: "stefanprodan/podinfo"
                             tag: "latest"
                         }
+                        env: {
+                            TESTFOO: string @timoni(runtime:string:testfoo)
+                        }
                     }
                     service: main: {
                         controller: "main"

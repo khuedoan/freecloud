@@ -9,7 +9,4 @@ default: apply
 
 # TODO DRY
 apply:
-	timoni bundle apply --file cicd.cue
-
-diff:
-	timoni bundle apply --file cicd.cue --dry-run --diff
+	sops exec-env ../secrets.enc.yaml 'timoni bundle apply --runtime-from-env --file cicd.cue'

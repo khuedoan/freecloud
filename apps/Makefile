@@ -9,7 +9,4 @@ default: apply
 
 # TODO DRY
 apply:
-	timoni bundle apply --file blog.cue
-
-diff:
-	timoni bundle apply --file blog.cue --dry-run --diff
+	sops exec-env ../secrets.enc.yaml 'timoni bundle apply --runtime-from-env --file blog.cue'

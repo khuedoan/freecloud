@@ -1,0 +1,2 @@
+# TODO currently requires git config diff.sops.textconv "sops --decrypt"
+*.enc.yaml diff=sops
