@@ -1,13 +1,15 @@
 .POSIX:
 .PHONY: *
 
-default: infra cluster
+env ?= dev
+
+default: infra cluster system
 
 infra:
-	make -C infra
+	make -C infra env=${env}
 
 cluster:
-	make -C cluster
+	make -C cluster env=${env}
 
 system:
-	make -C system
+	make -C system env=${env}

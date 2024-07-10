@@ -1,6 +1,12 @@
 .POSIX:
 
+env ?= dev
+
+ifeq ($(env), prod)
 default: apply
+else
+default:
+endif
 
 ~/.terraform.d/credentials.tfrc.json:
 	terraform login

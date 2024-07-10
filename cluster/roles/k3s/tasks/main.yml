@@ -45,6 +45,6 @@
   become: false
   copy:
     content: "{{ kubeconfig_base64.content | b64decode | replace('127.0.0.1', inventory_hostname) }}"
-    dest: "{{ playbook_dir }}/kubeconfig.yaml"
+    dest: "{{ playbook_dir }}/kubeconfig-prod.yaml"
     mode: 0600
   delegate_to: localhost

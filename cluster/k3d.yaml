@@ -1,0 +1,14 @@
+apiVersion: k3d.io/v1alpha4
+kind: Simple
+metadata:
+  name: horus-dev
+image: docker.io/rancher/k3s:v1.30.2-k3s2
+servers: 1
+agents: 0
+ports:
+  - port: 80:80
+    nodeFilters:
+      - loadbalancer
+  - port: 443:443
+    nodeFilters:
+      - loadbalancer

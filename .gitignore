@@ -2,6 +2,6 @@
 *.tfvars
 .terraform*
 Chart.lock
-kubeconfig.yaml
+kubeconfig*.yaml
 private.pem
 .secrets/

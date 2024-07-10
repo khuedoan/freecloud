@@ -1,6 +1,10 @@
 .POSIX:
 .PHONY: *
 
+env ?= dev
+
+export KUBECONFIG = $(shell pwd)/../cluster/kubeconfig-${env}.yaml
+
 default: apply
 
 apply:
