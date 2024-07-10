@@ -1,6 +1,6 @@
 bundle: {
     apiVersion: "v1alpha1"
-    name:       "git"
+    name:       "gitlab"
     instances: {
         "gitlab": {
             module: url: "oci://ghcr.io/stefanprodan/modules/flux-helm-release"
@@ -20,6 +20,7 @@ bundle: {
                                 tag: "17.1.2-ce.0"
                             }
                             env: {
+                                GITLAB_ROOT_PASSWORD: string @timoni(runtime:string:gitlab_root_password)
                                 GITLAB_OMNIBUS_CONFIG: """
                                     external_url 'http://gitlab.127-0-0-1.nip.io'
                                     gitlab_rails['omniauth_enabled'] = false
@@ -68,6 +69,31 @@ bundle: {
                                 }
                             }]
                         }]
+                    }
+                }
+            }
+        }
+        "gitlab-runner": {
+            module: url: "oci://ghcr.io/stefanprodan/modules/flux-helm-release"
+            namespace: "gitlab"
+            values: {
+                repository: url: "https://charts.gitlab.io"
+                chart: {
+                    name:    "gitlab-runner"
+                    version: "0.66.0"
+                }
+                helmValues: {
+                    gitlabUrl: "http://gitlab"
+                    rbac: create: true
+                    runners: {
+                        secret: "gitlab-runner-secret"
+                        config: """
+                            [[runners]]
+                                clone_url = "http://gitlab"
+                                [runners.kubernetes]
+                                    namespace = "{{.Release.Namespace}}"
+                                    image = "nixos/nix"
+                        """
                     }
                 }
             }
