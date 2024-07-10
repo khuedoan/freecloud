@@ -23,3 +23,4 @@ platform:
 
 apps:
 	sops exec-env ./secrets/common.enc.yaml 'timoni bundle apply --runtime-from-env --file apps/blog.cue'
+	sops exec-env ./secrets/common.enc.yaml 'timoni bundle apply --runtime-from-env --file apps/homelab-docs.cue'
