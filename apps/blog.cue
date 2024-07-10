@@ -2,8 +2,10 @@ bundle: {
     apiVersion: "v1alpha1"
     name:       "blog"
     instances: {
+        // TODO too easy to mess up
         "blog": {
             module: url: "oci://ghcr.io/stefanprodan/modules/flux-helm-release"
+            // TODO too easy to mess up
             namespace: "blog"
             values: {
                 repository: url: "https://bjw-s.github.io/helm-charts"

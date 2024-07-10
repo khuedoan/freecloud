@@ -12,3 +12,6 @@ ports:
   - port: 443:443
     nodeFilters:
       - loadbalancer
+  - port: 51820:51820
+    nodeFilters:
+      - loadbalancer

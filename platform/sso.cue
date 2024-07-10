@@ -1,6 +1,6 @@
 bundle: {
     apiVersion: "v1alpha1"
-    name:       "cicd"
+    name:       "sso"
     instances: {
     }
 }
