@@ -29,5 +29,6 @@ hack:
 	sops exec-env ./secrets/${env}.enc.yaml 'cd hack && go run .'
 
 fmt:
+	tofu fmt --recursive
+	cue fmt ./...
 	cd hack && go fmt ./...
-	cd infra && tofu fmt --recursive

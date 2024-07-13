@@ -15,6 +15,7 @@
             age
             ansible
             ansible-lint
+            cue
             git
             gnumake
             go
