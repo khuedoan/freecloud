@@ -13,10 +13,8 @@ func main() {
 		panic(err.Error())
 	}
 
-	kubeClient, err := kubernetes.NewForConfig(config)
+	_, err = kubernetes.NewForConfig(config)
 	if err != nil {
 		panic(err.Error())
 	}
-
-	setupGitLabRunner(kubeClient)
 }
