@@ -26,6 +26,7 @@
             pre-commit
             shellcheck
             sops
+            step-cli
             timoni
             wireguard-tools
             yamllint
