@@ -57,10 +57,10 @@ secrets/certs/${env}/issuer.key secrets/certs/${env}/issuer.crt: secrets/certs/$
 		--ca-key secrets/certs/${env}/ca.key
 .PHONY: certs
 certs: secrets/certs/${env}/ca.key secrets/certs/${env}/ca.crt secrets/certs/${env}/issuer.key secrets/certs/${env}/issuer.crt
-	@sops --set '["linkerd_ca_key"] "$(shell cat secrets/certs/${env}/ca.key)"' secrets/${env}.enc.yaml
-	@sops --set '["linkerd_ca_crt"] "$(shell cat secrets/certs/${env}/ca.crt)"' secrets/${env}.enc.yaml
-	@sops --set '["linkerd_issuer_key"] "$(shell cat secrets/certs/${env}/issuer.key)"' secrets/${env}.enc.yaml
-	@sops --set '["linkerd_issuer_crt"] "$(shell cat secrets/certs/${env}/issuer.crt)"' secrets/${env}.enc.yaml
+	@sops --set '["linkerd_ca_key"] $(shell cat secrets/certs/${env}/ca.key | jq --raw-input --slurp .)' secrets/${env}.enc.yaml
+	@sops --set '["linkerd_ca_crt"] $(shell cat secrets/certs/${env}/ca.crt | jq --raw-input --slurp .)' secrets/${env}.enc.yaml
+	@sops --set '["linkerd_issuer_key"] $(shell cat secrets/certs/${env}/issuer.key | jq --raw-input --slurp .)' secrets/${env}.enc.yaml
+	@sops --set '["linkerd_issuer_crt"] $(shell cat secrets/certs/${env}/issuer.crt | jq --raw-input --slurp .)' secrets/${env}.enc.yaml
 
 .PHONY: fmt
 fmt:
