@@ -70,6 +70,11 @@ bundle: {
 						kubernetesIngress: enabled: false
 						kubernetesGateway: enabled: true
 					}
+					deployment: {
+						podAnnotations: {
+							"linkerd.io/inject": "ingress"
+						}
+					}
 				}
 			}
 		}

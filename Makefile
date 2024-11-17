@@ -34,7 +34,7 @@ apps:
 hack:
 	sops exec-env ./secrets/${env}.enc.yaml 'cd hack && go run .'
 
-# https://linkerd.io/2.16/tasks/generate-certificates
+# https://linkerd.io/2-edge/tasks/generate-certificates
 secrets/certs/${env}/ca.key secrets/certs/${env}/ca.crt:
 	mkdir -p secrets/certs/${env}
 	step certificate create \
