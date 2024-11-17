@@ -54,5 +54,24 @@ bundle: {
 				}
 			}
 		}
+		"traefik": {
+			module: url: "oci://ghcr.io/stefanprodan/modules/flux-helm-release"
+			namespace: "traefik"
+			values: {
+				repository: url: "https://traefik.github.io/charts"
+				chart: {
+					name:    "traefik"
+					version: "33.0.0"
+				}
+				helmValues: {
+					ingressClass: enabled: false
+					providers: {
+						kubernetesCRD: enabled:     false
+						kubernetesIngress: enabled: false
+						kubernetesGateway: enabled: true
+					}
+				}
+			}
+		}
 	}
 }
